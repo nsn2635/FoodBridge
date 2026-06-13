@@ -184,14 +184,14 @@ nav a:hover {
 /* Primary Button Hover (Register & Card Claim Buttons) */
 .btn-primary {
   background-color: var(--primary);
-  color: white;
+  color: black;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.3);
+  box-shadow: 0 6px 12px rgba(168, 253, 172, 0.3);
 }
 
 /* Danger Button Hover (Card Override Button) */
