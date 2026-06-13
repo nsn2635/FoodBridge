@@ -15,24 +15,23 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-brand">
-        <h2>🥗 Food Rescue</h2>
+        <h2>🥗 Food Bridge</h2>
       </div>
       
-      <div className="nav-center">
+      <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/analytics">Impact</Link>
-      </div>
-
-      <div className="nav-right">
+        
         {!token ? (
           <>
-            <Link to="/login" className="btn-ghost small-btn">Login</Link>
+            {/* Login is now a styled button with a hover effect */}
+            <Link to="/login" className="btn-outline-primary small-btn">Login</Link>
             <Link to="/register" className="btn-primary small-btn">Register</Link>
           </>
         ) : (
           <>
-            {role === 'Donor' && <Link to="/donor" className="nav-link">Dashboard</Link>}
-            {role === 'NGO' && <Link to="/ngo" className="nav-link">Dashboard</Link>}
+            {role === 'Donor' && <Link to="/donor">Dashboard</Link>}
+            {role === 'NGO' && <Link to="/ngo">Dashboard</Link>}
             <button onClick={handleLogout} className="btn-outline-danger small-btn">Logout</button>
           </>
         )}

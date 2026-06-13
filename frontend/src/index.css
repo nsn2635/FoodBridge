@@ -142,19 +142,69 @@ nav a:hover {
   top: 0;
   z-index: 1000;
 }
-.nav-center {
+/* Restored Navbar Layout */
+.nav-links {
   display: flex;
-  gap: 30px;
-  flex: 1;
-  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
-.nav-right {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: flex-end;
-  min-width: 200px; 
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* The new Login Button Style */
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Primary Button Hover (Register & Card Claim Buttons) */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(46, 125, 50, 0.3);
+}
+
+/* Danger Button Hover (Card Override Button) */
+.btn-danger {
+  background-color: var(--danger);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(229, 57, 53, 0.3);
 }
 
 .nav-center a, .nav-right a.nav-link {
