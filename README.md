@@ -1,0 +1,1 @@
+FoodBridge is a web-based platform that connects food donors with NGOs to reduce food wastage. Donors can post surplus food, NGOs can discover and claim available donations, and QR-based verification ensures secure pickups. The platform also provides impact statistics to track meals saved and food waste reduced.
