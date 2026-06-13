@@ -142,31 +142,49 @@ nav a:hover {
   top: 0;
   z-index: 1000;
 }
-
-.nav-brand h2 {
-  margin: 0;
-  color: var(--primary);
-  font-size: 1.6rem;
-}
-
-.nav-links {
+.nav-center {
   display: flex;
-  align-items: center;
-  gap: 25px;
+  gap: 30px;
+  flex: 1;
+  justify-content: center;
 }
 
-.nav-links a {
+.nav-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 200px; 
+}
+
+.nav-center a, .nav-right a.nav-link {
   text-decoration: none;
   color: var(--text-light);
   font-weight: 600;
   transition: all 0.2s ease;
 }
 
-.nav-links a:hover {
+.nav-center a:hover, .nav-right a.nav-link:hover {
   color: var(--primary);
   transform: translateY(-1px);
 }
 
+.btn-ghost {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(46, 125, 50, 0.08); 
+  border: 1px solid rgba(46, 125, 50, 0.2);
+}
 /* Card Internal Spacing */
 .card-header {
   display: flex;
