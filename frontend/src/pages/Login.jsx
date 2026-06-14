@@ -3,7 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import API from '../services/api';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  });
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -15,38 +18,56 @@ const Login = () => {
     e.preventDefault();
     setError('');
     try {
-      const { data } = await API.post('/auth/login', formData);
+      // Sending the exact formData state to the backend
+      const response = await API.post('/auth/login', formData);
       
-      // Store auth data in browser local storage
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('role', data.role);
-      localStorage.setItem('userId', data.userId);
+      // Saving the VIP pass
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('role', response.data.role);
 
-      // Redirect based on role
-      if (data.role === 'Donor') {
-        navigate('/donor');
-      } else if (data.role === 'NGO') {
-        navigate('/ngo');
+      // Routing based on the strict database role
+      if (response.data.role === 'donor') {
+        navigate('/donor-dashboard'); 
+      } else if (response.data.role === 'ngo') {
+        navigate('/ngo-dashboard');
+      } else {
+        navigate('/'); 
       }
-      
-      // Force page refresh to update Navbar state instantly
-      window.location.reload();
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Check your credentials.');
+      // This will catch the specific error sent by our authController
+      setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
     }
   };
 
   return (
     <div style={{ padding: '20px', maxWidth: '400px', margin: '40px auto', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>Login to Food Rescue</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <h2>Login</h2>
+      {error && <p style={{ color: 'red', fontWeight: 'bold' }}>{error}</p>}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required style={{ padding: '10px' }} />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required style={{ padding: '10px' }} />
-        <button type="submit" style={{ padding: '10px', backgroundColor: '#007BFF', color: 'white', border: 'none', cursor: 'pointer' }}>Login</button>
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email Address" 
+          value={formData.email} 
+          onChange={handleChange} 
+          required 
+          style={{ padding: '10px' }} 
+        />
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          required 
+          style={{ padding: '10px' }} 
+        />
+        <button type="submit" style={{ padding: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', cursor: 'pointer' }}>
+          Login
+        </button>
       </form>
       <p style={{ marginTop: '15px' }}>
-        New user? <Link to="/register">Register here</Link>
+        Don't have an account? <Link to="/register">Register here</Link>
       </p>
     </div>
   );

@@ -18,13 +18,14 @@ const App = () => {
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        
         <Route 
           path="/donor" 
-          element={token && role === 'Donor' ? <DonorDashboard /> : <Navigate to="/login" />} 
+          element={token && role === 'donor' ? <DonorDashboard /> : <Navigate to="/login" />} 
         />
         <Route 
           path="/ngo" 
-          element={token && role === 'NGO' ? <NgoDashboard /> : <Navigate to="/login" />} 
+          element={token && role === 'ngo' ? <NgoDashboard /> : <Navigate to="/login" />} 
         />
         <Route path="/analytics" element={<Analytics />} />
       </Routes>
