@@ -303,6 +303,7 @@ nav a:hover {
   background-color: var(--primary);
   color: white;
   overflow-x: hidden;
+  padding-right: 1px;
 }
 
 .btn-danger {
@@ -392,7 +393,9 @@ nav a:hover {
     width: 100%;
     text-align: center;
   }
-
+  .btn-primary{
+    padding-right: 1px;
+  }
   /* 3. Card Mobile Polish */
   .premium-card {
     padding: 15px;
