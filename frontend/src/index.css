@@ -22,12 +22,18 @@
   font-family: 'Inter', sans-serif;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-main);
   line-height: 1.6;
-  overflow-x: hidden;
-  max-width: 100vw;
+  max-width: 100vw;       
+  overflow-x: hidden;     /* Enforces no right-scrolling */
+  margin: 0;
+  padding: 0;
 }
 
 /* Typography */
@@ -328,25 +334,55 @@ nav a:hover {
 @media (max-width: 768px) {
   /* 1. Navbar Stacking */
   .navbar {
+    padding: 15px 10px;
+    width: 100%;
+  }
+
+  .nav-links {
     flex-direction: column;
-    padding: 1rem;
+    width: 100%;
     gap: 15px;
   }
 
-  .nav-center {
-    flex-direction: column;
+  /* Force buttons to respect the screen width */
+  .nav-links a, 
+  .nav-links button {
     width: 100%;
-    gap: 10px;
-    align-items: center;
+    display: block;
+    text-align: center;
+    margin: 0;
   }
 
-  .nav-right {
+  /* --- FOOTER FIXES --- */
+  /* If your footer has a class like .footer or .footer-container */
+  footer, .footer {
     flex-direction: column;
-    width: 100%;
-    gap: 10px;
-    justify-content: center;
+    text-align: center;
+    padding: 30px 15px;
+    gap: 20px;
   }
 
+  /* Shrink the text safely */
+  footer h1, footer h2, footer h3 {
+    font-size: 1.5rem !important;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  footer p, footer a, footer li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    word-wrap: break-word; /* Prevents long emails/links from breaking the layout */
+  }
+
+  /* If you have a grid layout in the footer, force it to one column */
+  .footer-links, .footer-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+  }
+  
   /* 2. Full-Width Mobile Buttons */
   .btn-outline-primary, 
   .btn-primary, 
