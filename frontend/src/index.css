@@ -322,3 +322,57 @@ nav a:hover {
 .status-available { background-color: #e8f5e9; color: #2e7d32; }
 .status-claimed { background-color: #fff3e0; color: #e65100; }
 .status-completed { background-color: #e3f2fd; color: #1565c0; }
+
+@media (max-width: 768px) {
+  /* 1. Navbar Stacking */
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 15px;
+  }
+
+  .nav-center {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .nav-right {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  /* 2. Full-Width Mobile Buttons */
+  .btn-outline-primary, 
+  .btn-primary, 
+  .btn-ghost, 
+  .btn-outline-danger {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* 3. Card Mobile Polish */
+  .premium-card {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  /* 4. Analytics Page Fixes */
+  h2 {
+    font-size: 1.8rem !important; /* Shrink massive titles */
+  }
+  
+  .qr-box svg {
+    max-width: 100%; /* Prevent QR codes from breaking containers */
+    height: auto;
+  }
+}
