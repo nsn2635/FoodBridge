@@ -302,6 +302,7 @@ nav a:hover {
 .btn-primary {
   background-color: var(--primary);
   color: white;
+  overflow-x: hidden;
 }
 
 .btn-danger {
@@ -382,7 +383,7 @@ nav a:hover {
     width: 100%;
     gap: 15px;
   }
-  
+
   /* 2. Full-Width Mobile Buttons */
   .btn-outline-primary, 
   .btn-primary, 
