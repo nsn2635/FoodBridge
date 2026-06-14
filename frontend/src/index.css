@@ -184,7 +184,7 @@ nav a:hover {
 /* Primary Button Hover (Register & Card Claim Buttons) */
 .btn-primary {
   background-color: var(--primary);
-  color: black;
+  color: var(--text-main);
   transition: all 0.3s ease;
 }
 
