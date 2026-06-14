@@ -2,12 +2,22 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import API from '../services/api';
 
+/*
+What is the logic for our form? 
+We hold the user's input in a state. Notice the exact values for our role dropdown below: 
+we are using strict lowercase 'donor' and 'ngo'. 
+Why? Because databases don't guess. Sending 'Donor' when the database expects 'donor' 
+will cause a validation failure. 
+Also, notice we removed the '/api' prefix from our POST request route because our base URL 
+in the API service configuration is already handling that routing for us.
+*/
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    role: 'Donor' // Default value matching select dropdown
+    role: 'donor' 
   });
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -21,10 +31,9 @@ const Register = () => {
     setError('');
     try {
       await API.post('/auth/register', formData);
-      // Push them to login directly after successful registration
       navigate('/login');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed.');
+      setError(err.response?.data?.message || 'Registration failed. Please try again.');
     }
   };
 
@@ -33,17 +42,43 @@ const Register = () => {
       <h2>Create Account</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-        <input type="text" name="name" placeholder="Full Name / NGO Name" value={formData.name} onChange={handleChange} required style={{ padding: '10px' }} />
-        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} required style={{ padding: '10px' }} />
-        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required style={{ padding: '10px' }} />
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Full Name / NGO Name" 
+          value={formData.name} 
+          onChange={handleChange} 
+          required 
+          style={{ padding: '10px' }} 
+        />
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Email Address" 
+          value={formData.email} 
+          onChange={handleChange} 
+          required 
+          style={{ padding: '10px' }} 
+        />
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          value={formData.password} 
+          onChange={handleChange} 
+          required 
+          style={{ padding: '10px' }} 
+        />
         
         <label><strong>Register As:</strong></label>
         <select name="role" value={formData.role} onChange={handleChange} style={{ padding: '10px' }}>
-          <option value="Donor">Individual / Restaurant (Donor)</option>
-          <option value="NGO">NGO Volunteer (Claimer)</option>
+          <option value="donor">Individual / Restaurant (Donor)</option>
+          <option value="ngo">NGO Volunteer (Claimer)</option>
         </select>
 
-        <button type="submit" style={{ padding: '10px', backgroundColor: '#28a745', color: 'white', border: 'none', cursor: 'pointer' }}>Register</button>
+        <button type="submit" style={{ padding: '10px', backgroundColor: '#28a745', color: 'white', border: 'none', cursor: 'pointer' }}>
+          Register
+        </button>
       </form>
       <p style={{ marginTop: '15px' }}>
         Already have an account? <Link to="/login">Login here</Link>
